@@ -2,28 +2,47 @@
 
 namespace Acceptic\Entities\Campaign;
 
+
 class Campaign {
-    /** @var  OptimizationProps $optProps */
+    /**
+     * @var OptimizationProps $optProps
+     */
     private $optProps;
 
-    /** @var  int */
+    /**
+     * @var int
+     */
     private $id;
 
-    /** @var  array */
+    /**
+     * @var array
+     */
     private $publisherBlacklist;
+
+    public function __construct(OptimizationProps $optimizationProps, int $id)
+    {
+        $this->optProps = $optimizationProps;
+        $this->id = $id;
+    }
 
     public function getOptimizationProps()
     {
         return $this->optProps;
     }
 
-    public function getBlackList()
+    public function getId()
     {
-        return $this->publisherBlacklist;
+        return $this->id;
     }
 
-    public function saveBlacklist($blacklist)
+    public function getBlackList()
     {
-        // dont implement
+        return !is_null($this->publisherBlacklist) ? $this->publisherBlacklist : [];
+    }
+
+    public function saveBlacklist(array $blacklist)
+    {
+        //implemented with testing purposes
+        $this->publisherBlacklist = $blacklist;
     }
 }
